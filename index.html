@@ -68,33 +68,40 @@
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
 
-    // console log
+    // Console Log Demo
     errorBtns[0].addEventListener('click', () => {
       console.log('Console Log Demo');
     });
 
+    // Console Error Demo
     errorBtns[1].addEventListener('click', () => {
       console.error('Console Error Demo');
     });
 
+    // Console Dir
     errorBtns[2].addEventListener('click', () => {
       console.dir(errorBtns[2]);
     }); 
 
+    // Console dirxml
     errorBtns[3].addEventListener('click', () => {
       console.dirxml(document);
     });
 
+    // Console Log Group
     const label = 'Log Group';
 
+    // Console Group Start
     errorBtns[4].addEventListener('click', () => {
       console.group(label);
     }); 
 
+    // Consoel Group End
     errorBtns[5].addEventListener('click', () => {
       console.groupEnd(label);
     }); 
 
+    // Console Table
     errorBtns[6].addEventListener('click', () => {
       console.table([
         {
@@ -112,16 +119,22 @@
       ]);
     });
 
+    // Start Timer
     errorBtns[7].addEventListener('click', () => {
       console.log('Timer Started!');
-      console.time();
+
+      // "Run Time: " should be consistent in there and later timeEnd()
+      console.time("Run Time: ");
     }); 
 
+    // End Timer
     errorBtns[8].addEventListener('click', () => {
       console.log('Timer Ended!');
-      console.timeEnd();
+      // "Run Time: " should be consistent in there and previous time()
+      console.timeEnd("Run Time: ");
     }); 
 
+    // Console Trace
     errorBtns[9].addEventListener('click', () => {
       const traceTest = () => { deep(); };
       const deep = () => { deeper(); };
@@ -130,6 +143,43 @@
       traceTest();
     });
 
+    // Step 3: Trigger an error and try-catch
+    errorBtns[10].addEventListener('click', () => {
+      try {
+
+        // intentionally cause a reference error
+        console.log(intentional_Reference_Error);
+
+      } catch (error) {
+        // console log error information
+        console.log("Sadly an error happened friend");
+        throw error;
+      }
+
+    });
+
+    // referenced from MDN API "GlobalEventHandlers.onerror"
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+
+      let message = [
+        'Message: ' + msg,
+        'URL: ' + url,
+        'Line: ' + lineNo,
+        'Column: ' + columnNo,
+        'Error object: ' + JSON.stringify(error)
+      ].join(' - ');
+
+      alert(message);
+    }
+
+    // step 4: Custom Error
+    class customError extends Error {
+      constructor(message){
+        super(message);
+        this.name = 'customError';
+      }
+
+    }
 
   </script>
 </body>

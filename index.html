@@ -24,6 +24,17 @@
       width: 240px;
     }
   </style>
+
+
+  // installation of trackjs
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "14097ece90124b389e7fcc63f67107a9"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+                        
 </head>
 <body>
   <fieldset>
@@ -170,6 +181,10 @@
       ].join(' - ');
 
       alert(message);
+
+      // trackJS
+      TrackJS.track('Testing TrackJS!');
+                        
     }
 
     // step 4: Custom Error
